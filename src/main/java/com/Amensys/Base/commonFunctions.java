@@ -139,6 +139,30 @@ public class commonFunctions extends testBase{
     }
 
     /**
+     *
+     * @param element
+     */
+    public void dropDownCount(WebElement element, int waitTime){
+        try{
+            wait = new WebDriverWait(driver, waitTime);
+            wait.until(ExpectedConditions.visibilityOf(element));
+
+            Select selObj = new Select(element);
+            List<WebElement> webElementList = selObj.getOptions();
+            int itemSize = webElementList.size();
+            //System.out.println(itemSize);
+            for (int i = 0; i < itemSize; i++){
+                String optionValue = webElementList.get(i).getText();
+                System.out.println(optionValue);
+            }
+
+        }catch (NoSuchElementException e){
+            e.printStackTrace();
+            System.err.println(element + "Not found after waiting for" + waitTime);
+        }
+    }
+
+    /**
      * Random Alpha numeric String
      * @param length
      * @return
