@@ -4,12 +4,15 @@ import com.Amensys.Base.commonFunctions;
 import com.Amensys.Base.testBase;
 import com.Amensys.Pages.logIn;
 import com.Amensys.Pages.signUp;
+import com.Amensys.Utilities.Listener.TestListener;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners({TestListener.class})
 public class testSignUP extends testBase {
 
     signUp signup;
@@ -68,14 +71,26 @@ public class testSignUP extends testBase {
         Assert.assertEquals(true, signup.emailORMobile.isEnabled());
         Assert.assertEquals(true, signup.reEnterEmail.isEnabled());
         Assert.assertEquals(true, signup.password.isEnabled());
-        Assert.assertEquals(true, signup.logoSignUp.isDisplayed());
-        Assert.assertEquals(true, signup.logoText.isDisplayed());
-        Assert.assertEquals(true, signup.buttonSignUp.isDisplayed());
-        Assert.assertEquals(true, signup.agreement.isDisplayed());
+        //Assert.assertEquals(true, signup.logoSignUp.isDisplayed());
+        //Assert.assertEquals(true, signup.logoText.isDisplayed());
+        //Assert.assertEquals(true, signup.buttonSignUp.isDisplayed());
+        //Assert.assertEquals(true, signup.agreement.isDisplayed());
 
         //Assert.assertEquals(logosignup,"Sign Up" );
         //Assert.assertEquals(logotext, "It’s quick and easy.");
         //Assert.assertEquals(agreementtext, agreementtext);
+    }
+
+    @Test
+    public void test_dropDownCount(){
+        commonfunctions.elementToClick(login.buttonCreateAccount, 5);
+        commonfunctions.dropDownCount(signup.month, 5);
+        commonfunctions.dropDownCount(signup.date, 5);
+        commonfunctions.dropDownCount(signup.year, 5);
+
+
+        //Assert.assertEquals();
+
     }
 
     @AfterMethod
